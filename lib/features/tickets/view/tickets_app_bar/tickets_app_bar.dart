@@ -1,4 +1,5 @@
 import 'package:effective_mobile/components/components.dart';
+import 'package:effective_mobile/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

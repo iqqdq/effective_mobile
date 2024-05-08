@@ -31,6 +31,8 @@ class _SearchScreenState extends State<SearchScreen> {
       TextEditingController();
   final FocusNode _toFocusNode = FocusNode();
 
+  bool _isFirstAppear = true;
+
   final _titles = [
     'Стамбул',
     'Сочи',
@@ -57,7 +59,7 @@ class _SearchScreenState extends State<SearchScreen> {
       }
     });
 
-    _toFocusNode.addListener(() => setState(() {}));
+    _toFocusNode.addListener(() => setState(() => _isFirstAppear = false));
 
     super.initState();
 
@@ -112,7 +114,7 @@ class _SearchScreenState extends State<SearchScreen> {
             /// CATEGORY BUTTON'S
             AnimatedOpacity(
               opacity: _fromFocusNode.hasFocus ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 300),
+              duration: Duration(milliseconds: _isFirstAppear ? 0 : 300),
               child: CategoryRow(
                   onTap: (child, title) => _setToPlace(
                         child,
@@ -123,7 +125,7 @@ class _SearchScreenState extends State<SearchScreen> {
             /// TICKET OFFER'S
             AnimatedOpacity(
               opacity: _fromFocusNode.hasFocus ? 0.0 : 1.0,
-              duration: const Duration(milliseconds: 300),
+              duration: Duration(milliseconds: _isFirstAppear ? 0 : 300),
               child: PopularDirectionsListView(
                   titles: _titles,
                   onTap: (index) => _setToPlace(
